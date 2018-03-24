@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: drone-server
+spec:
+  rules:
+  - host: drone.abramsimon.com
+    http:
+      paths:
+      - backend:
+          serviceName: drone-server
+          servicePort: 80
