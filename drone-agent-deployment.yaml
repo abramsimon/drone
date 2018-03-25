@@ -1,9 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose --file docker-compose.yml convert
-    kompose.version: 1.10.0 ()
   creationTimestamp: null
   labels:
     io.kompose.service: drone-agent
@@ -24,7 +21,12 @@ spec:
         env:
         - name: DRONE_SECRET
         - name: DRONE_SERVER
-          value: drone-server:9000
+          value: 10.43.250.255:9000
+        - name: DRONE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: literal-token
+              key: DRONE_SECRET
         image: drone/agent:0.8
         name: drone-agent
         resources: {}

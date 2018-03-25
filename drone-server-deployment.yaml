@@ -34,7 +34,10 @@ spec:
         - name: DRONE_OPEN
           value: "true"
         - name: DRONE_SECRET
-          value: "change-me"
+          valueFrom:
+            secretKeyRef:
+              name: literal-token
+              key: DRONE_SECRET
         image: drone/drone:0.8
         name: drone-server
         ports:
